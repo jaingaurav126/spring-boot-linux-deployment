@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Resetting some default styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 90%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .login-container input[type="submit"] {
+            width: 95%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .camera-preview {
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #camera {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .error-message {
+            color: #ff8080;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form>
+            <input type="text" placeholder="Username" required />
+            <input type="password" placeholder="Password" required />
+            <input type="submit" value="Login" />
+        </form>
+
+        <!-- Camera Preview -->
+        <!--div class="camera-preview">
+            <video id="camera" autoplay></video>
+        </div>
+        <div class="error-message" id="camera-error"></div-->
+    </div>
+
+    <script>
+        // Access user's webcam using getUserMedia API
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                // Set the video element's source to the webcam stream
+                const videoElement = document.getElementById('camera');
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                const errorMessage = document.getElementById('camera-error');
+                errorMessage.textContent = "Error accessing the camera: " + error.message;
+            });
+    </script>
+</body>
+</html>
